@@ -57,8 +57,10 @@
 				"     partitionBy('hash', 1)) ~> MoviesByYearss",
 				"YearExtraction sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     partitionFileNames:['CleanMoviesData'],",
 				"     skipDuplicateMapInputs: true,",
-				"     skipDuplicateMapOutputs: true) ~> MoviesClean"
+				"     skipDuplicateMapOutputs: true,",
+				"     partitionBy('hash', 1)) ~> MoviesClean"
 			]
 		}
 	}
