@@ -39,6 +39,7 @@
 				"          title = toString(left(title,length(title)-6))) ~> YearExtraction",
 				"YearExtraction sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
+				"     partitionFileNames:['MvviesClean.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true) ~> MoviesClean"
 			]
