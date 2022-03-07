@@ -19,6 +19,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "MoviesByYearss"
+				},
+				{
+					"dataset": {
+						"referenceName": "OutputCSV",
+						"type": "DatasetReference"
+					},
+					"name": "MoviesClean"
 				}
 			],
 			"transformations": [
@@ -27,9 +34,6 @@
 				},
 				{
 					"name": "MoviesByYears"
-				},
-				{
-					"name": "MoviesByYear"
 				}
 			],
 			"scriptLines": [
@@ -45,13 +49,16 @@
 				"          title = toString(left(title,length(title)-6))) ~> YearExtraction",
 				"YearExtraction aggregate(groupBy(Year),",
 				"     MoviesCount = count()) ~> MoviesByYears",
-				"YearExtraction aggregate() ~> MoviesByYear",
 				"MoviesByYears sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['MoviesByYearCSV'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     partitionBy('hash', 1)) ~> MoviesByYearss"
+				"     partitionBy('hash', 1)) ~> MoviesByYearss",
+				"YearExtraction sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> MoviesClean"
 			]
 		}
 	}
