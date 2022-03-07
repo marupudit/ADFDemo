@@ -51,7 +51,7 @@
 				"     MoviesCount = count()) ~> MoviesByYears",
 				"MoviesByYears sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     partitionFileNames:['MoviesByYearCSV'],",
+				"     partitionFileNames:['MoviesByYear.csv'],",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
 				"     partitionBy('hash', 1)) ~> MoviesByYearss",
